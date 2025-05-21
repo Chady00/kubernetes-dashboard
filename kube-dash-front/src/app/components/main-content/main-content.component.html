@@ -1,0 +1,153 @@
+<mat-drawer-container class="main-level-container" autosize>
+  <div class="page-layout">
+    
+    <!-- Header -->
+    <div class="header-tile">
+      <app-dropdown 
+        (selectedChange)="handleDropdownSelection($event)" 
+        [contents]="contents" 
+        [placeholder]="'Select Namespace'" 
+        [width]="'80%'">
+      </app-dropdown>
+
+      <mat-form-field class="search-field" appearance="outline">
+        <input 
+          matInput 
+          (keyup)="applyFilter($event)" 
+          placeholder="Search {{ selectedView.label }}..." 
+          #input />
+      </mat-form-field>
+
+      <div class="num-items">
+        {{ dataSource.filteredData.length }} items
+      </div>
+    </div>
+
+    <!-- Table and Terminal -->
+    <div class="grow-tile">
+      <div class="table-container">
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+          <!-- SELECT Column -->
+          <ng-container matColumnDef="select">
+            <th mat-header-cell *matHeaderCellDef>
+              <mat-checkbox
+                (change)="$event ? toggleAllRows() : null"
+                [checked]="selection.hasValue() && isAllSelected()"
+                [indeterminate]="selection.hasValue() && !isAllSelected()"
+                [aria-label]="checkboxLabel()">
+              </mat-checkbox>
+            </th>
+            <td mat-cell *matCellDef="let row" data-column="select">
+              <mat-checkbox
+                (click)="$event.stopPropagation()"
+                (change)="$event ? selection.toggle(row) : null"
+                [checked]="selection.isSelected(row)"
+                [aria-label]="checkboxLabel(row)">
+              </mat-checkbox>
+            </td>
+          </ng-container>
+
+          <!-- Dynamic Columns -->
+          <ng-container *ngFor="let column of selectedView.columns" [matColumnDef]="column">
+            <th 
+              mat-header-cell 
+              *matHeaderCellDef 
+              class="resizable-column" 
+              [attr.data-column]="column">
+              {{ column }}
+              <div class="resize-handle" (mousedown)="startResize($event, column)"></div>
+            </th>
+            <td 
+              mat-cell 
+              *matCellDef="let row" 
+              [attr.data-column]="column" 
+              [ngClass]="getRowClass(row, column)">
+              
+              @if(column.toLowerCase() === 'containers') {
+                <div class="container-boxes">
+                  @for (box of row[column]; track $index) {
+                    <span
+                      class="container-box"
+                      [ngClass]="row['Status'] && row['Status'] !== 'Running' && row['Status'] !== 'Available' ? 'red-box' : 'container-box'">
+                    </span>
+                  }
+                </div>
+              } @else {
+                {{ row[column] }}
+              }
+            </td>
+          </ng-container>
+
+          <!-- ACTIONS Column -->
+          <ng-container matColumnDef="actions">
+            <th mat-header-cell *matHeaderCellDef>
+              <button mat-icon-button aria-label="More actions">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+            </th>
+            <td 
+              mat-cell 
+              *matCellDef="let row" 
+              data-column="actions" 
+              (click)="clickedwhichcell(row)" 
+              class="more_vert">
+
+              <button
+                mat-icon-button
+                #trigger="matMenuTrigger"
+                [matMenuTriggerFor]="menu"
+                [ngClass]="{ 'menu-open': trigger.menuOpen }"
+                class="more_vert"
+                aria-label="More actions">
+                <mat-icon>more_vert</mat-icon>
+              </button>
+
+              <mat-menu #menu="matMenu" class="custom-menu-panel">
+                @for(action of actions; track $index) {
+                  <button mat-menu-item (click)="onMenuActionClick(action, row)">
+                    <mat-icon>{{ action.icon }}</mat-icon>
+                    <span>{{ action.action }}</span>
+                  </button>
+                }
+              </mat-menu>
+            </td>
+          </ng-container>
+
+          <!-- Header and Row Definitions -->
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr 
+            mat-row 
+            *matRowDef="let row; columns: displayedColumns; let i = index" 
+            (click)="handleRowClick($event, row, i)">
+          </tr>
+        </table>
+
+        <!-- Empty State -->
+        @if (!dataSource.filteredData.length) {
+          <div class="no-content">
+            <div>Item list is empty</div>
+            <button (click)="resetFilters()">Reset Filters</button>
+          </div>
+        }
+      </div>
+      <!-- resizer-->
+      <div class="resizer" (mousedown)="initResize($event)"></div>
+      <!-- terminal-->
+      <div class="terminal-container">
+        <app-terminal></app-terminal>
+      </div>
+    </div>
+  </div>
+
+  <!-- Drawer and Chart Content -->
+  <div class="chart-sidenav-content"></div>
+
+  <mat-drawer position="end" #drawer class="chart-sidenav" mode="over">
+    <app-chart
+      [list]="chartData"
+      [current_row_type]="selectedView.value"
+      [current_row]="selected_row">
+    </app-chart>
+  </mat-drawer>
+</mat-drawer-container>

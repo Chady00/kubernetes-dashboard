@@ -1,0 +1,370 @@
+
+.page-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 85vw;
+    background-color: transparent;
+  }
+  .header-tile {
+    flex: 0 0 2.6rem;
+    background: #222427;
+    border-bottom: 1px solid #1c1e1f;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin:0;
+    padding:0;
+    height:100%;
+    width:100%;
+  }
+  ::ng-deep .mat-sidenav-content.mat-drawer-content.mat-sidenav-content.main-nav {
+    width: 100%;
+    transition-duration: 000ms;
+   
+  }
+  ::ng-deep .mat-drawer-transition .mat-drawer-content{
+    background-color: #222427;
+  }
+  .grow-tile {
+    flex: 1;
+    background: #222427;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+  }
+  
+  .table-container {
+    width: 100%;
+    overflow: auto; 
+    overflow: auto;
+    overflow-x: auto;
+    flex: 2;
+    max-height: 66%;
+  }
+  /* table styling */
+  
+  /*header row*/
+  ::ng-deep .mat-mdc-table {
+    width: max-content !important;
+    min-width: 100% !important;
+  }
+
+  ::ng-deep .mat-mdc-header-row{
+      height: 2.6rem !important;
+      min-height: 2.6rem!important;
+      max-height: 2.6rem !important;
+      color: #a7b2bd!important;
+      background-color: #222427!important;
+      border-bottom: 2rem solid white!important;
+      position: sticky!important;
+      top: 0!important;
+      z-index: 1!important;
+  } 
+  ::ng-deep .mat-mdc-row, 
+  ::ng-deep .mat-mdc-footer-row {
+    height: 1.5rem !important;
+    min-height: 1.5rem !important;
+    max-height: 1.5rem !important;
+    background-color: #222427!important;
+    color: #949ba2!important;
+    border: none !important;
+    cursor: pointer!important;
+  }
+  /* ::ng-deep .mat-mdc-row:nth-child(odd) {
+    background-color: transparent!important;
+  } */
+  ::ng-deep .mat-mdc-row:hover, 
+  ::ng-deep .mat-mdc-footer-row:hover{
+    background-color: #222427c0!important;
+  }
+  
+  ::ng-deep .mat-mdc-cell, 
+  ::ng-deep .mat-mdc-header-cell, 
+  ::ng-deep .mat-mdc-footer-cell {
+    padding: 0 4px !important;
+    min-height: 2.6rem !important;
+    font-size:0.9rem !important;
+    border:none!important;
+    line-height: 0!important;
+  }
+  ::ng-deep .mat-mdc-header-cell:nth-child(n+3) {
+    position: relative!important;
+    padding-left: 10px !important;
+  }
+    ::ng-deep .mat-mdc-header-cell:nth-child(n+3)::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 31%;
+      height: 40%;
+      width: 0.2px;
+      background-color: #62676c;
+    }
+  
+  ::ng-deep .mat-mdc-checkbox {
+    transform: scale(0.7);
+    height: 100%!important;
+    border-color: #949ba2!important;
+  }
+
+  ::ng-deep .mdc-checkbox {
+    padding: 0 !important;
+    top: -0.6rem!important;
+  }
+  ::ng-deep .mdc-checkbox__background{
+    border-color: #9fa7ae!important;
+    border-width: 0.09rem!important;
+  }
+ /* width*/
+ ::ng-deep .column-width {
+  width: auto!important;
+  max-width: auto!important;
+  min-width: auto!important;
+}
+::ng-deep .linkable{
+  color: #4491cd!important;
+  text-decoration: underline!important;
+  cursor: pointer;
+}
+::ng-deep .status{
+  color: #4CAF4B!important;
+}
+/* progress bar */
+
+
+::ng-deep .cpu-progress .mdc-linear-progress__bar-inner {
+    border-color: #3D90CE !important;
+}
+
+::ng-deep .memory-progress .mdc-linear-progress__bar-inner {
+  border-color: #FFC63D !important;
+  background-color: #414448 !important;
+}
+
+
+
+.grow-tile {
+  flex: 1;
+  background: #222427;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+
+
+.resizer {
+  height: 1px;
+  width: 100%;
+  background: #1c1e1f;
+  cursor: ns-resize;
+  position: relative;
+  z-index: 1;
+  margin-top: 5px;
+}
+
+.resizer:hover, .resizer:active {
+  background: #285677;
+  height:1px;
+  cursor: row-resize;
+  transition: background 1s ease;
+}
+
+.resizer::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px;
+  height: 2px;
+  background: #4d5056;
+  border-radius: 1px;
+  cursor: row-resize;
+}
+
+.resizer:hover::after {
+  background: #414447;
+  cursor: row-resize;
+}
+:host {
+  display: block;
+  height: 100%;
+}
+/* Terminal container */
+.terminal-container {
+  flex:2;
+  width: 100%;
+  overflow: hidden;
+}
+
+body.resizing {
+  user-select: none;
+  cursor: ns-resize !important;
+}
+
+/* chart container*/
+.chart-sidenav{
+  width: 40%;
+  height: 100%;
+  background-color: #222427;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-end;
+  border-radius: 0px;
+  border: 1px solid #45474b;
+  box-shadow: 0px 10px 20px rgba(28, 28, 28, 0.25);
+  overflow: auto;
+}
+/* chart open background */
+::ng-deep .mat-drawer-backdrop.mat-drawer-shown {
+  visibility: visible;
+  background-color: var(--mat-sidenav-scrim-color, 
+color-mix(in srgb, var(--mat-sys-neutral-variant20) 1%, rgba(0, 0, 0, 0.092)));
+}
+.resizable-column {
+  position: relative;
+  min-width: 100px;
+  max-width: 400px;
+  overflow: hidden;
+}
+
+.resize-handle {
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 3px;
+  height: 100%;
+  cursor: col-resize;
+  z-index: 10;
+}
+::ng-deep .mat-mdc-cell {
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  max-width: 90px;
+}
+
+::ng-deep .mat-mdc-cell, .mat-mdc-header-cell, .mat-mdc-footer-cell{
+  padding:10px!important;
+}
+::ng-deep .mat-mdc-option{
+  min-height: 1.7rem!important;
+}
+::ng-deep .mdc-list-item__primary-text{
+  color: #C6D2D3!important;
+}
+.no-content{
+  color: #848a8f;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  height: 100%;
+  font-size: 0.9rem;
+}
+.no-content button {
+  background-color: transparent;
+  color: #3584CD;
+  text-decoration: underline;
+  border:0;
+  cursor: pointer;
+}
+
+.status-running {
+  color: #4CAF47;
+}
+
+.status-not-running {
+  color: #FF791E;
+}
+.mat-mdc-header-cell{
+  color: #D1D2D3;
+  border-block: 1px solid #2D3338!important;
+  padding-top:0!important;
+  padding-bottom:0!important;
+}
+.linkable{
+  color: blue;
+  text-decoration: underline;
+}
+.container-boxes {
+  display: flex;
+  gap: 4px;
+}
+
+.container-box {
+  width: 10px;
+  height: 10px;
+  background-color: #4CAF50;
+}
+.red-box{
+  width: 10px;
+  height: 10px;
+  background-color: #e05f08;
+  border: 1px solid #cfc927;
+  box-sizing: border-box;
+}
+.search-field{
+  margin:0px!important;
+  display: flex!important;
+  align-items: center!important;
+  justify-content: center!important;
+  background-color: #1C1E20;
+  width: 20rem!important;
+}
+
+/* Center the input text, placeholder, and caret */
+.search-field input {
+  font-size: 0.8rem !important;
+  color: white;
+  width: 100%;
+}
+.search-field input::placeholder {
+  color: #abaaaa !important; /* Replace with your desired color */
+  opacity: 1; /* Ensure it's fully visible */
+}
+.num-items{
+  padding-left: 1rem;
+  font-size: 0.9rem;
+  color: #8f9ba5;
+  font-weight: 500;
+}
+::ng-deep .more_vert .mat-mdc-icon-button{
+  padding:0!important;
+  margin:0!important;
+  height:0!important;
+  color: #848a8f!important;
+}
+::ng-deep .custom-menu-panel {
+  width: auto !important;
+  border-radius: 0px !important;
+  box-shadow: 0px 0px 1px 1px rgba(255, 255, 255, 0.102)!important;
+  min-height:11rem;
+}
+::ng-deep .custom-menu-panel {
+  transform: translate(-15px, 25px) !important;
+}
+::ng-deep .action-button {
+  transition: background-color 0.2s ease-in-out!important;
+  border-radius: 50%!important;
+}
+::ng-deep .more_vert .mat-icon:hover,.more_vert.menu-open .mat-icon{
+  background-color: #4f5255 !important;
+  border-radius: 3px !important;
+  color: white!important;
+}
+::ng-deep .mat-mdc-menu-content{
+  padding:0px!important;
+}
+::ng-deep  .mat-mdc-menu-item{
+  min-height:35px!important;
+}
+::ng-deep .mat-mdc-menu-item:not([disabled]):hover{
+  background-color: rgba(62, 62, 81, 0.299)!important;
+}

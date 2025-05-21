@@ -1,0 +1,70 @@
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    background-color: #222427;
+    height:100%;
+    width: 100%;
+    overflow:hidden!important;
+  }
+  
+  .side-nav {
+    width: 15%;
+    background-color: #222427;
+    color: white;
+    border-right: 0.1rem solid #1c1e1f;
+    border-radius: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow:auto!important;
+  }
+  .mobile-side{
+    width:40%;
+  }
+  
+  .main-nav {
+    background-color: #222427;
+    color: white;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    overflow:hidden!important;
+    width: 85%;
+  }
+  .main-content-wrapper {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .menu-button {
+    border-right: 1px solid #1C1E1F;
+    height: 100%;
+    width: 1.6rem;
+    padding: 0 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: transparent;
+    border-radius: 0;
+  }
+  
+  .main-content-wrapper app-main-content {
+    flex: 1;
+    height: 100%;
+  }
+  ::ng-deep .mat-drawer-content, .mat-drawer-container, .mat-drawer-transition{
+    overflow:hidden!important;
+    position: fixed;
+  
+  }
+  .mat-drawer-inner-container {
+    height: 100%!important;
+    overflow: hidden !important;
+  }
+
+
+

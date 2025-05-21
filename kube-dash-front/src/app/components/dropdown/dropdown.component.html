@@ -1,0 +1,9 @@
+<div class="field-container">
+  <mat-form-field [style.--custom-width]="width">
+    <mat-select [formControl]="items" multiple [placeholder]="placeholder">
+      @for (item of contents; track $index) {
+            <mat-option [value]="item">{{item.viewValue}}</mat-option>
+    }
+    </mat-select>
+  </mat-form-field>
+</div>

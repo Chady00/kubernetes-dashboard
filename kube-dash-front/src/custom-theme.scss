@@ -1,0 +1,63 @@
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+
+
+html {
+  @include mat.theme((color: (theme-type: light,
+        primary: mat.$azure-palette,
+        tertiary: mat.$blue-palette,
+      ),
+      typography: Roboto,
+      density: 0,
+    ));
+}
+
+
+
+:root {
+  @include mat.form-field-overrides((filled-caret-color: #1c1e1f,
+      filled-container-color:#1c1e1f,
+      container-height:0.6rem,
+      container-vertical-padding: 0, filled-input-text-color:white,
+
+      filled-active-indicator-height:0px,
+      filled-focus-active-indicator-height:0px,
+      outlined-outline-width:0px,
+      outlined-focus-outline-width:0px))
+}
+
+:root {
+  @include mat.select-overrides((panel-background-color: #1c1e1f,
+      enabled-trigger-text-color: #FFF,
+      placeholder-text-color: #FFF,
+      trigger-text-size:0.8rem,
+    ));
+}
+
+:root {
+  @include mat.tree-overrides((node-text-size: 0.75rem,
+      node-text-weight: 500,
+      node-min-height: 10px));
+}
+
+:root {
+  @include mat.progress-bar-overrides((track-color: #414448,
+      track-height: 0.13rem,
+      active-indicator-height: 0.13rem,
+    ));
+}
+
+:root {
+  @include mat.menu-overrides((item-label-text-color: #909BA6,
+      item-icon-color: #909BA6,
+      container-color: #222427,
+    ));
+}
+
+:root {
+  @include mat.dialog-overrides((container-color: #f8efe7c6,
+      subhead-color: #7f212c,
+      supporting-text-color: rgb(5, 18, 49),
+    ));
+}

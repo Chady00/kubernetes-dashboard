@@ -1,0 +1,101 @@
+
+
+
+.page-layout {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}
+
+.header-tile {
+  flex: 0 0 2.6rem;
+  background: #222427;
+  border: 1px solid #353c42a4;
+  border-top: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height:100%;
+  width:100%;
+}
+
+.grow-tile {
+  height: 100%;
+  background: #222427;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  overflow:hidden;
+}
+app-dropdown {
+  width: 100%;
+}
+
+
+.tree-container {
+  font-size: 0.9rem;
+  width: 100%;
+  height: 90%;
+  background-color: transparent;
+  padding: 0rem;
+  overflow:auto;
+}
+
+::ng-deep  .mat-tree {
+  width: 100%;
+}
+
+::ng-deep .mat-tree-node,
+::ng-deep .mat-nested-tree-node {
+  display: flex;
+  align-items: center;
+  padding: 0rem 0;
+  line-height: 0.8rem;
+  height: 1.5rem;
+  font-size: 0.875rem;
+  background-color: #222427;
+  color:#949BA2!important;
+  transition: background-color 0.2s ease;
+}
+/*ellipsis node.name*/
+::ng-deep .mat-tree-node .node-content,
+::ng-deep .mat-nested-tree-node .node-content {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+}
+
+::ng-deep .mat-tree-node:hover,
+::ng-deep .mat-nested-tree-node:hover {
+  background-color: #2e3034;
+  cursor: pointer;
+}
+
+::ng-deep .selected-node {
+  background-color: #3c3f44;
+  color: white !important;
+  border-left: 3px solid #42a5f5;
+}
+
+::ng-deep .mat-tree-node button {
+  margin-right: 0.2rem;
+  color: #168bc6;
+  width: 30px;
+  height:30px;
+}
+
+.mat-icon-rtl-mirror{
+  font-size: 0.8rem;
+  padding:0!important;
+}
+.node-side-icon{
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  line-height: 1.5rem;
+  font-size: 1rem;
+}

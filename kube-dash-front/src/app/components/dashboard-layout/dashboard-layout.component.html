@@ -1,0 +1,20 @@
+<div class="page-container">
+    <mat-sidenav-container class="main-container">
+        <mat-sidenav class="side-nav" [ngClass]="{'mobile-side': isMobile()}" #snav [mode]="isMobile() ? 'over' : 'side'" [fixedInViewport]="isMobile()" fixedTopGap="80" [opened]="!isMobile()">
+          <app-sidebar></app-sidebar>
+        </mat-sidenav>
+        
+        <mat-sidenav-content class="main-nav" [ngClass]="{'mobile-main': isMobile()}">
+          <div class="main-content-wrapper">
+            @if(isMobile()){
+              <button mat-icon-button class="menu-button" (click)="snav.toggle()">
+                <mat-icon>menu</mat-icon>
+              </button>
+            }
+            <app-main-content></app-main-content>
+          </div>
+        </mat-sidenav-content>
+      </mat-sidenav-container>
+  </div>
+  
+  

@@ -1,0 +1,58 @@
+
+  .app-toolbar{
+    display: sticky;
+    top: 0;
+    background-color: #222427;
+    color: white;
+    height: 2.6rem;
+  }
+  .icon-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+    width:auto;
+    height: auto;
+    margin-left: 2rem;
+    color: #929ea5;
+  }
+  .mat-icon{
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+  }
+  .back{
+    cursor: pointer;
+  }
+  .forward{
+    color: #53575c;
+    margin-left: 0.5rem;
+    cursor: pointer;
+  }
+  .notification-container{
+    display: flex;
+    justify-content: flex-end;
+    align-items:center;
+    flex-direction: row;
+    gap: 1.2rem;
+    width:93%;
+    color: #8f9ba5;
+  }
+  .demo-section ::ng-deep .mat-badge-content {
+    background-color: rgba(255, 255, 255, 0) !important;
+    color: rgb(255, 0, 0) !important;
+    font-size: 0.55rem;
+  }
+  .notification-icon{
+    font-size: 1.2rem;
+    cursor: pointer;
+  }
+  .account-avatar{
+    font-size:1.6rem;
+    cursor: pointer!important;
+  }
+
+
+  
+ 
+
+  

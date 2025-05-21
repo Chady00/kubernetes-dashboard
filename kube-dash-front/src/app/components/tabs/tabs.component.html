@@ -1,0 +1,25 @@
+<div class="navigator-toolbar">
+    @if(type==TabType.MAIN_CONTENT) {
+        <div class="navigator-button-container">
+            <button (click)="addTab()" class="navigator-button"> Navigator</button>
+        </div>
+    }
+    <div class="tab-wrapper">
+        <mat-tab-group class="tab-group" mat-stretch-tabs="false" animationDuration="0ms" [selectedIndex]="activeTab()" (selectedTabChange)="onTabChanged($event)">
+            @for ( c of contents ; track $index) {
+                <mat-tab>
+                    <ng-template mat-tab-label>
+                      <div class="tab-label-with-icon">
+                        <mat-icon class="tab-icon" >{{getIconForTab()}}</mat-icon>
+                        <span>{{c}}</span>
+                      </div>
+                    </ng-template>
+                  </mat-tab>
+            }
+        </mat-tab-group>
+
+            <button class="terminal-add-button"(click)="addTab()">+</button>
+        
+        
+    </div>
+</div>

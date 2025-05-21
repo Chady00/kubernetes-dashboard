@@ -1,0 +1,70 @@
+::ng-deep .mat-mdc-select-arrow {
+    color: #8f9ba5 !important;
+}
+::ng-deep .mat-mdc-form-field-subscript-wrapper {
+    display: none !important;
+    height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+::ng-deep .mat-mdc-form-field {
+    width: var(--custom-width) !important;     
+    max-width: 95% !important;
+    min-width: 0 !important;
+    display: block !important;
+    margin: 0 auto !important;   
+
+  }
+
+.field-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+  }
+  
+ ::ng-deep .mat-mdc-select-panel {
+  padding: 0 !important;
+}
+
+::ng-deep .mat-mdc-option {
+  color: #ffffff !important;
+  font-size: 0.8rem !important;
+  height: 1.1rem;
+  min-height: 1.8rem;
+  padding-bottom: 0px;
+}
+
+::ng-deep .mat-mdc-option:hover {
+  background-color: #222427 !important;
+  color: #fff !important;
+}
+
+
+::ng-deep .mat-mdc-text-field-wrapper {
+  border: 1px solid #414348 !important;
+  background: #1c1e1f !important;
+}
+
+
+/* Style for when the dropdown is focused */
+::ng-deep .mat-mdc-form-field.mat-focused .mat-mdc-text-field-wrapper {
+  border: 1px solid #3584cd !important;
+}
+
+/* If you want to round the corners of the border */
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 4px !important;
+}
+
+::ng-deep .cdk-overlay-pane{
+  height:auto;
+}
+::ng-deep .mat-pseudo-checkbox{
+  height: 15px!important;
+  width: 15px!important;
+}
+::ng-deep .mat-pseudo-checkbox-full.mat-pseudo-checkbox-checked, .mat-pseudo-checkbox-full.mat-pseudo-checkbox-indeterminate{
+  background-color: rgba(88, 81, 81, 0.467)!important;
+}

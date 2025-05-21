@@ -1,0 +1,21 @@
+<div class="terminal-tabs">
+    <app-tabs (tabAdded)="onTabAdded($event)" [type]="TabType.TERMINAL_EDITOR" [contents]="contents"></app-tabs>
+    <p class="terminal-type">Kubernetes cluster minikube in context.</p>
+</div>
+<!-- <p-terminal welcomeMessage="🐧 New session has been created." [prompt]="prompt" #terminal /> -->
+@for(session of sessions; let i = $index; track $index) {
+  <div class="terminal-window"
+       [id]="'terminal-window-' + i"
+       [hidden]="i !== activeSession"
+       >
+    <p-terminal
+      [ngStyle]="{'background-color': 'black'}"
+      [ngClass]="'p-terminal-' + i"
+      welcomeMessage="🐧 New session has been created."
+      [prompt]="'PS ' + clusterInfo + '> '"
+      #terminalRef
+      (keydown)="onKeydown($event)"
+      
+    />
+  </div>
+}

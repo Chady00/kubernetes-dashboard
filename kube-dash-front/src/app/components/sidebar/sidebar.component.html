@@ -1,0 +1,41 @@
+<div class="page-layout">
+  <div class="header-tile">
+    <app-dropdown [contents]="contents" [placeholder]="'Home'"></app-dropdown>
+  </div>
+
+  <div class="grow-tile">
+    <div class="tree-container">
+      <mat-tree [dataSource]="dataSource" [treeControl]="treeControl">
+        <!-- This is the tree node template for leaf nodes -->
+        <mat-tree-node (click)='onNodeClick(node)' *matTreeNodeDef="let node" matTreeNodePadding [style.padding-left.px]="getPadding(node.level)"
+        [ngClass]="{'selected-node': selectedNode === node}">
+          <!-- use a disabled button to provide padding for tree leaf -->
+          <button mat-icon-button ></button>
+          @if(node.icon)
+            {<mat-icon class="node-side-icon" aria-hidden="false">{{node.icon}}</mat-icon>
+          }
+          <div class="node-content">
+            {{node.name}}
+          </div>
+        </mat-tree-node>
+        <!-- This is the tree node template for expandable nodes -->
+        <mat-tree-node *matTreeNodeDef="let node;when: hasChild" matTreeNodePadding matTreeNodeToggle
+                      [cdkTreeNodeTypeaheadLabel]="node.name" [style.padding-left.px]="getPadding(node.level)">
+          <button mat-icon-button matTreeNodeToggle
+                  [attr.aria-label]="'Toggle ' + node.name">
+            <mat-icon class="mat-icon-rtl-mirror">
+              {{treeControl.isExpanded(node) ? 'expand_more' : 'chevron_right'}}
+            </mat-icon>
+          </button>
+          @if(node.icon)
+          {
+            <mat-icon class="node-side-icon" aria-hidden="false" >{{node.icon}}</mat-icon>
+          }
+          <div class="node-content">
+            {{node.name}}
+          </div>
+        </mat-tree-node>
+      </mat-tree>
+    </div>
+  </div>
+</div>

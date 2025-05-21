@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+* {
+  box-sizing: border-box;
+}
+.navigator-toolbar {
+    display: flex;
+    align-items: center;
+    height: 2.4rem;
+    background-color: #1c1e1f;
+    color: white;
+    border-top: 0.07rem solid #1c1e1f;
+    padding: 0;
+    width: 100%;
+    border: 1px solid #353c42;
+  }
+  
+  .navigator-button-container {
+    flex: 0 0 14.9%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    height: 100%;
+  }
+  
+  .navigator-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 5rem;
+    /* margin-right:20rem; */
+    background-color: #222427;
+    color: rgb(225, 223, 223);
+    border: 1px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 500;
+  }
+  .tab-wrapper {
+    flex: 1 1 75%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    height: 100%;
+    position: relative;
+    min-width: 0;
+  }
+  
+  mat-tab-group {
+    flex-shrink: 1;
+    flex-grow: 0;
+    width: auto;
+    height: 100%;
+    min-width: 0;
+    max-width: calc(100% - 2.5rem); /* 2.5 is the button width*/
+  }
+  
+  /* Make all tab text white */
+  ::ng-deep .mdc-tab__text-label {
+    color: white !important;
+  }
+  
+  /* Remove ripple and tab padding */
+  ::ng-deep .mdc-tab {
+    height: 2.4rem !important;
+    margin: 0 !important;
+    min-width: auto !important;
+    font-weight: 400!important;
+    font-size: 0.8rem!important;
+    font-family: "Roboto", sans-serif;
+    padding: 0.8rem!important;
+    border: 1px solid #2d3338af!important;
+    border-top: none;
+  }
+  
+  /* Style the active tab (no underline) */
+  ::ng-deep .mdc-tab.mdc-tab--active {
+    background-color: #222427;
+    border-top: 2px solid #58900f!important;
+    border-bottom: none;
+  }
+  
+  /* Remove tab underline completely */
+  ::ng-deep .mdc-tab-indicator {
+    display: none !important;
+  }
+  
+  ::ng-deep .mdc-tab__content {
+    height: 100% !important;
+    align-items: center !important;
+  }
+  ::ng-deep .mat-mdc-tab-header-pagination-chevron{
+    border-color:#929ea5!important;
+  }
+  
+
+  .terminal-add-button{
+    background-color: transparent;
+    border: none;
+    color: white;
+    font-size: 1.2rem;
+    cursor: pointer;
+    width: 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .tab-label-with-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+  }
+  
+  .tab-icon {
+    font-size: 1rem;
+    height: 1rem;
+    width: 1rem;
+    color: #65A80F;
+    margin-left:0;
+    padding:0;
+  }
+  ::ng-deep .mdc-tab.mdc-tab--active .tab-icon{
+    color: #65A80F;
+  }
+  ::ng-deep .mat-mdc-tab-label-container{
+    border-bottom:none!important;
+  }

@@ -1,0 +1,16 @@
+<mat-toolbar class="app-toolbar">
+    <span class="icon-container">
+      <mat-icon (click)="prevTab()" class="mat-icon back" [style.color]="currentTab()? '#8f9ba5' : '#53575c'" style aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_back"></mat-icon>
+      <mat-icon (click)="nextTab()"class="mat-icon forward" [style.color]="isLastTab()? '#53575c' : '#8f9ba5'" aria-hidden="false" aria-label="Example home icon" fontIcon="arrow_forward"></mat-icon>
+    </span>
+    <span class="notification-container">
+      <div (click)="notificationOff()" class="demo-section">
+        <mat-icon class="notification-icon" aria-hidden="false" [matBadge]="hasNotification ? '🟠' : null" >notifications</mat-icon>
+          <span class="cdk-visually-hidden">
+          </span>
+      </div>
+      <div class="demo-section">
+        <mat-icon class="account-avatar">account_circle</mat-icon>
+      </div>
+    </span>
+</mat-toolbar>

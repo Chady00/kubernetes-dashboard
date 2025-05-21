@@ -1,0 +1,141 @@
+<cdk-virtual-scroll-viewport class="scrolling-viewport" [itemSize]="5">
+  <div class="chart-main-container">
+    <div class="chart-header">
+    {{ current_row_type ? (current_row_type.charAt(0).toUpperCase() + current_row_type.slice(1)) : '' }}: 
+    {{ current_row !== undefined && list[current_row]?.name ? list[current_row].name : '' }}
+    </div>
+    <div class="chart-container">
+      <apx-chart
+        [series]="chartOptions.series"
+        [chart]="chartOptions.chart"
+        [xaxis]="chartOptions.xaxis"
+        [yaxis]="chartOptions.yaxis"
+        [dataLabels]="chartOptions.dataLabels"
+        [markers]="chartOptions.markers"
+        [stroke]="chartOptions.stroke"
+        [tooltip]="chartOptions.tooltip"
+        [annotations]="chartOptions.annotations"
+        [colors]="chartOptions.colors">
+      </apx-chart>
+    </div>
+    <div class="list-container">
+      <h4>Properties</h4>
+      <mat-list>
+        <div *cdkVirtualFor="let property of properties">
+          <mat-list-item>
+            <div class="property-item">
+              <div class="property-label">{{property.label}}</div>
+              <div class="property-value">
+                @if(!isObject(property.value) && !isArrayOfObjects(property.value)){
+                  @switch(property.type) {
+                    @case('stat') {
+                      <div [ngClass]="getStatusClass(property.value)">
+                        {{ property.value? property.value: '-' }}
+                      </div>
+                    }
+                    @case('link') {
+                      <a class="link">{{property.value? property.value:'-'}}</a>
+                    }
+                    @default {
+                      {{property.value? property.value:'-'}}
+                    } 
+                  }
+                }
+                @else{
+                  <mat-accordion>
+                    <mat-expansion-panel (opened)="panelOpenState.set(true)" (closed)="panelOpenState.set(false)">
+                      <mat-expansion-panel-header>
+                        <mat-panel-description>
+                          {{ isArrayOfObjects(property.value) ? property.value.length : objectLength(property.value)}} {{property.label}}
+                        </mat-panel-description>
+                      </mat-expansion-panel-header>
+                      @if (property.type && property.type=='labelic') {
+                        @for (key of objectKeys(property.value); track $index) {
+                          @if(property.value[key]){
+                            <span class="key-value-span">
+                              {{ key }}={{ property.value[key]? property.value[key] : '-' }}
+                            </span>
+                          }
+                        }
+                      }
+                      @else if (property.type && property.type =='tabular') {
+                        <!-- Table display  -->
+                          <div class="chart-table">
+                            <mat-table [dataSource]="tableDataCache.get(property.label.toLowerCase()) || []">
+                              <ng-container *ngFor="let column of tableColumnsCache.get(property.label.toLowerCase()); let i = index" [matColumnDef]="column">
+                              <th mat-header-cell *matHeaderCellDef>
+                                  {{ tableDisplayColumnsCache.get(property.label.toLowerCase())?.[i] || column }}
+                              </th>
+                              <td mat-cell *matCellDef="let row" class="chart-table-row">
+                                  {{ row[column] == undefined ? '-' : row[column] }}
+                              </td>
+                              </ng-container>
+                              <mat-header-row *matHeaderRowDef="tableColumnsCache.get(property.label.toLowerCase())"></mat-header-row>
+                              <mat-row *matRowDef="let row; columns: tableColumnsCache.get(property.label.toLowerCase()); let i = index"></mat-row>
+                            </mat-table>
+                          </div>
+                      }
+                        @else {
+                        <!-- Object Expansion display  -->
+                        <mat-accordion multi="true">
+                          <mat-expansion-panel *ngFor="let item of property.value; let i = index" [expanded]="true" [hideToggle]="true" [disabled]="true">
+                            <mat-expansion-panel-header>
+                              <mat-panel-title>
+                                <span class="expandable-box"></span>
+                                <div class="expandable-title">{{ item.name }}</div>
+                              </mat-panel-title>
+                            </mat-expansion-panel-header>
+                            <div class="object-properties">
+                              @for (key of objectKeys(item); track $index) {
+                                <div class="property-item">
+                                  <div class="property-label">{{ key }}</div>
+                                  <div class="property-value">
+                                    @if (!isObject(item[key]) && !isArrayOfObjects(item[key])) {
+                                      {{ item[key] == null ? '-' : item[key] }}
+                                    }
+                                    @else {
+                                      <mat-accordion>
+                                        <mat-expansion-panel>
+                                          <mat-expansion-panel-header>
+                                            <mat-panel-description>
+                                              {{ key }}
+                                            </mat-panel-description>
+                                          </mat-expansion-panel-header>
+                                          <div class="property-value-inline">
+                                          @for (nestedKey of objectKeys(item[key]); track $index) {
+                                            @if(item[key][nestedKey]!== null){
+                                              <span class="key-value-span">
+                                                {{ nestedKey }}={{ item[key][nestedKey] }}
+                                              </span>
+                                            }
+                                          }
+                                        </div>
+                                        </mat-expansion-panel>
+                                      </mat-accordion>
+                                    }
+                                  </div>
+                                </div>
+                              }
+                            </div>
+                          </mat-expansion-panel>
+                        </mat-accordion>
+                      }
+                      
+                    </mat-expansion-panel>
+                  </mat-accordion>
+                }
+              </div>
+            </div>
+          </mat-list-item>
+        </div>
+      </mat-list>
+    </div>
+  </div>
+</cdk-virtual-scroll-viewport>
+
+
+
+
+
+
+
